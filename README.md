@@ -14,6 +14,12 @@
 1. После открытия терминала перейти в папку api командой `cd api`
 2. Запустить dotnet командой `dotnet watch run`
 3. Открыть файл api/api.csproj и посмотреть версию зависимости <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />. Значит остальные пакеты нужно искать под версию 9.*.*
+-  Установить через NuGet `Npgsql.EntityFrameworkCore.PostgreSQL`
+-  Установить через NuGet `Microsoft.EntityFrameworkCore.Tools`
+-  Установить через NuGet `Microsoft.EntityFrameworkCore.Design`
+-  Установить через NuGet `Newtonsoft.Json`
+-  Установить через NuGet `Swashbuckle.AspNetCore`
+-  Установить через NuGet `Microsoft.AspNetCore.Mvc.NewtonsoftJson`
 4. Вместо SqlServer будет UseNpgsql в program.cs
 5. В appsettings.json будет следующая "DefaultConnection" - "User Id=login;Password=password;Host=localhost;Port=5433;Database=finshark;"
 5. Запустить приложение Docker Desktop, в проекте открыть терминал, перейти в /api, и выполнить команду "docker-compose up --build -d"
