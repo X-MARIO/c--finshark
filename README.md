@@ -14,17 +14,20 @@
 1. После открытия терминала перейти в папку api командой `cd api`
 2. Запустить dotnet командой `dotnet watch run`
 3. Открыть файл api/api.csproj и посмотреть версию зависимости <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />. Значит остальные пакеты нужно искать под версию 9.*.*
+-  Остановите проект в терминале выполнив команду "ctrl + C"
 -  Установить через NuGet `Npgsql.EntityFrameworkCore.PostgreSQL`
 -  Установить через NuGet `Microsoft.EntityFrameworkCore.Tools`
 -  Установить через NuGet `Microsoft.EntityFrameworkCore.Design`
 -  Установить через NuGet `Newtonsoft.Json`
 -  Установить через NuGet `Swashbuckle.AspNetCore`
 -  Установить через NuGet `Microsoft.AspNetCore.Mvc.NewtonsoftJson`
+- Выполнить в терминале команду `dotnet tool update --global dotnet-ef`
+- Можно снова запустить проект
 4. Вместо SqlServer будет UseNpgsql в program.cs
 5. В appsettings.json будет следующая "DefaultConnection" - "User Id=login;Password=password;Host=localhost;Port=5433;Database=finshark;"
 5. Запустить приложение Docker Desktop, в проекте открыть терминал, перейти в /api, и выполнить команду "docker-compose up --build -d"
 6. Перейти на "http://localhost:5051/"
 7. pgAdmin попросить ввести мастер пароль. Ввести `password`
 8. Нажать на "add new server", вбить Name=postgres, Host name/adress=postgres, username=login, password=password. Остальное не трогать
-9. Выполнить в терминале команду `dotnet ef migrations add init`
+9. Выполнить в терминале команду `dotnet ef migrations add init`. Если не работает, то остановить проект
 10. Выполнить в терминале команду `dotnet ef database update`
