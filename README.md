@@ -30,4 +30,7 @@
 7. pgAdmin попросить ввести мастер пароль. Ввести `password`
 8. Нажать на "add new server", вбить Name=postgres, Host name/adress=postgres, username=login, password=password. Остальное не трогать
 9. Выполнить в терминале команду `dotnet ef migrations add init`. Если не работает, то остановить проект
-10. Выполнить в терминале команду `dotnet ef database update`
+10. Выполнить в терминале команду `dotnet ef database update`. Если не работает, то остановить проект
+11. Выполнить в терминале команду `dotnet ef migrations add init`. Если не работает, то остановить проект
+12. Выполнить в терминале команду `dotnet ef database update`. Если не работает, то остановить проект
+13. Добавить флаг <InvariantGlobalization>false</InvariantGlobalization>
