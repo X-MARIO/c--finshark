@@ -34,3 +34,4 @@
 11. Выполнить в терминале команду `dotnet ef migrations add init`. Если не работает, то остановить проект
 12. Выполнить в терминале команду `dotnet ef database update`. Если не работает, то остановить проект
 13. Добавить флаг <InvariantGlobalization>false</InvariantGlobalization>
+14. После создания первого контроллера открыть `http://localhost:5190/swagger/index.html` и `http://localhost:5190/api/stock` и `http://localhost:5190/api/stock/1`. Возможно порт будет другой
