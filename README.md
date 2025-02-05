@@ -13,4 +13,4 @@
 #Инструкции по запуску
 1. После открытия терминала перейти в папку api командой `cd api`
 2. Запустить dotnet командой `dotnet watch run`
-3. Открыть файл api/api.csproj и посмотреть версию зависимости <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />. Значит остальные пакеты нужно искать под версию 9.0.1
+3. Открыть файл api/api.csproj и посмотреть версию зависимости <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />. Значит остальные пакеты нужно искать под версию 9.*.*
