@@ -66,8 +66,8 @@ public class StockRepository : IStockRepository
         return stockModel;
     }
 
-    public Task<bool> StockExists(int id)
+    public async Task<bool> StockExists(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Stocks.AnyAsync(s => s.Id == id);
     }
 }
