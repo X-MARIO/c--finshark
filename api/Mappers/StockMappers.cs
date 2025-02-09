@@ -16,20 +16,20 @@ public static class StockMappers
             LastDiv = stockModel.LastDiv,
             Industry = stockModel.Industry,
             MarketCap = stockModel.MarketCap,
-            Comments = stockModel.Comments.Select(s => s.ToCommentDto()).ToList(),
+            Comments = stockModel.Comments.Select(c => c.ToCommentDto()).ToList()
         };
     }
 
-    public static Stock ToStockFromCreateDto(this CreateStockRequestDto stockDto)
+    public static Stock ToStockFromCreateDto(this CreateStockDto createStockDto)
     {
         return new Stock
         {
-            Symbol = stockDto.Symbol,
-            CompanyName = stockDto.CompanyName,
-            Purchase = stockDto.Purchase,
-            LastDiv = stockDto.LastDiv,
-            Industry = stockDto.Industry,
-            MarketCap = stockDto.MarketCap,
+            Symbol = createStockDto.Symbol,
+            CompanyName = createStockDto.CompanyName,
+            Purchase = createStockDto.Purchase,
+            LastDiv = createStockDto.LastDiv,
+            Industry = createStockDto.Industry,
+            MarketCap = createStockDto.MarketCap,
         };
     }
 }

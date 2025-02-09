@@ -2,7 +2,7 @@
 
 namespace api.Dtos.Comment;
 
-public class CreateCommentDto
+public class UpdateCommentDto
 {
     [Required]
     [MinLength(5, ErrorMessage = "Title must be 5 characters")]

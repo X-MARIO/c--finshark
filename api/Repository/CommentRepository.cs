@@ -9,12 +9,12 @@ public class CommentRepository : ICommentRepository
 {
     private readonly ApplicationDbContext _context;
 
-    public CommentRepository(ApplicationDbContext applicationDbContext)
+    public CommentRepository(ApplicationDbContext context)
     {
-        _context = applicationDbContext;
+        _context = context;
     }
 
-    public async Task<List<Comment>> GetAllAsync()
+    public async Task<List<Comment>> GetAllComments()
     {
         return await _context.Comments.ToListAsync();
     }
@@ -24,30 +24,41 @@ public class CommentRepository : ICommentRepository
         return await _context.Comments.FindAsync(id);
     }
 
-    public async Task<Comment> CreateAsync(Comment comment)
+    public async Task<Comment> CreateAsync(Comment commentModel)
     {
-        await _context.Comments.AddAsync(comment);
+        await _context.Comments.AddAsync(commentModel);
         await _context.SaveChangesAsync();
-        return comment;
+        return commentModel;
     }
 
-    public Task<Comment?> UpdateAsync(Comment comment)
+    public async Task<Comment?> UpdateAsync(int id, Comment commentModel)
     {
-        throw new NotImplementedException();
-    }
+        var existingComment = await _context.Comments.FindAsync(id);
 
-    public async Task<Comment?> DeleteAsync(int id)
-    {
-        var comment = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
-
-        if (comment == null)
+        if (existingComment == null)
         {
             return null;
         }
 
-        _context.Comments.Remove(comment);
+        existingComment.Title = commentModel.Title;
+        existingComment.Content = commentModel.Content;
+
         await _context.SaveChangesAsync();
 
-        return comment;
+        return existingComment;
+    }
+
+    public async Task<Comment?> DeleteAsync(int id)
+    {
+        var existingComment = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (existingComment == null)
+        {
+            return null;
+        }
+        
+        _context.Comments.Remove(existingComment);
+        await _context.SaveChangesAsync();
+        return existingComment;
     }
 }

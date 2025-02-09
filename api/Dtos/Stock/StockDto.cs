@@ -18,5 +18,7 @@ public class StockDto
 
     public long MarketCap { get; set; }
 
+    // Comments
+    
     public List<CommentDto> Comments { get; set; } = new List<CommentDto>();
 }
