@@ -31,4 +31,12 @@ public class PortfolioController : ControllerBase
         var userPortfolio = await _portfolioRepository.GetPortfolios(appUser);
         return Ok(userPortfolio);
     }
+
+    [HttpPost]
+    [Authorize]
+
+    public async Task<IActionResult> CreateUserPortfolio([FromBody] Portfolio portfolio)
+    {
+        throw new Exception();
+    }
 }
