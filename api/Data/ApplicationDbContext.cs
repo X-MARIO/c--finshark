@@ -22,11 +22,13 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         {
             new IdentityRole
             {
+                Id = "Admin",
                 Name = "Admin",
                 NormalizedName = "ADMIN"
             },
             new IdentityRole
             {
+                Id = "User",
                 Name = "User",
                 NormalizedName = "USER"
             }
