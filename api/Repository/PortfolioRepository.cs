@@ -14,7 +14,7 @@ public class PortfolioRepository : IPortfolioRepository
         _applicationDbContext = applicationDbContext;
     }
 
-    public async Task<List<Stock>> GetPortfolios(AppUser user)
+    public async Task<List<Stock>> GetUserPortfolio(AppUser user)
     {
         return await _applicationDbContext.Portfolios.Where(u => u.AppUserId == user.Id)
             .Select(stock => new Stock
@@ -33,5 +33,16 @@ public class PortfolioRepository : IPortfolioRepository
         await _applicationDbContext.Portfolios.AddAsync(portfolio);
         await _applicationDbContext.SaveChangesAsync();
         return portfolio;
+    }
+
+    public async Task<Portfolio?> DeletePortfolio(AppUser appUser, string symbol)
+    {
+        var portfolioModel = await _applicationDbContext.Portfolios.FirstOrDefaultAsync(x => x.AppUserId == appUser.Id && x.Stock.Symbol.ToLower() == symbol.ToLower());
+
+        if (portfolioModel == null) return null;
+        _applicationDbContext.Portfolios.Remove(portfolioModel);
+        await _applicationDbContext.SaveChangesAsync();
+
+        return portfolioModel;
     }
 }

@@ -28,7 +28,7 @@ public class PortfolioController : ControllerBase
     {
         var username = User.GetUsername();
         var appUser = await _userManager.FindByNameAsync(username);
-        var userPortfolio = await _portfolioRepository.GetPortfolios(appUser);
+        var userPortfolio = await _portfolioRepository.GetUserPortfolio(appUser);
         return Ok(userPortfolio);
     }
 
@@ -42,7 +42,7 @@ public class PortfolioController : ControllerBase
 
         if (stock == null) return BadRequest("Stock not found");
 
-        var userPortfolio = await _portfolioRepository.GetPortfolios(appUser);
+        var userPortfolio = await _portfolioRepository.GetUserPortfolio(appUser);
 
         if (userPortfolio.Any(e =>
             {
@@ -62,5 +62,27 @@ public class PortfolioController : ControllerBase
         if (portfolioModel == null) return StatusCode(500, "Could not create");
 
         return Created();
+    }
+
+    [HttpDelete]
+    [Authorize]
+    public async Task<IActionResult> DeletePortfolio([FromBody] string symbol)
+    {
+        var userName = User.GetUsername();
+        var appUser = await _userManager.FindByNameAsync(userName);
+        var userPortfolio = await _portfolioRepository.GetUserPortfolio(appUser);
+
+        var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
+
+        if (filteredStock.Count() == 1)
+        {
+            await _portfolioRepository.DeletePortfolio(appUser, symbol);
+        }
+        else
+        {
+            return BadRequest("Stock not in your portfolio");
+        }
+
+        return Ok();
     }
 }
