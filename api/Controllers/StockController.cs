@@ -28,7 +28,7 @@ public class StockController : ControllerBase
 
         var stocks = await _stockRepository.GetAllAsync(query);
 
-        var stackDto = stocks.Select(s => s.ToStockDto());
+        var stackDto = stocks.Select(s => s.ToStockDto()).ToList();
 
         return Ok(stackDto);
     }
