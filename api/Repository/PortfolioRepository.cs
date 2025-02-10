@@ -27,4 +27,11 @@ public class PortfolioRepository : IPortfolioRepository
                 MarketCap = stock.Stock.MarketCap,
             }).ToListAsync();
     }
+
+    public async Task<Portfolio> CreateAsync(Portfolio portfolio)
+    {
+        await _applicationDbContext.Portfolios.AddAsync(portfolio);
+        await _applicationDbContext.SaveChangesAsync();
+        return portfolio;
+    }
 }
